@@ -13,7 +13,9 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
+    @group = Group.find(params[:group_id])
+    @post = @group.posts.build(post_params.merge(user_id: current_user.id))
+
     @post.save ? (redirect_to post_url(@post)) : (render :new)
   end
 
@@ -33,6 +35,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :body)
+    params.require(:post).permit(:title, :body, :user_id)
   end
 end
