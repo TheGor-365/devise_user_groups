@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand me-5" href="/">Devise User Groups</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse ms-5" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="<%= root_path %>">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<%= posts_path %>">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<%= new_post_path %>">Create Post</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="">
+      <% if user_signed_in? %>
+        <span class="badge badge-success float-right mr-5">
+          <%= current_user.email %>
+        </span>
+
+        <nav class="my-2 my-md-0 mr-md-3">
+          <%= link_to 'Settings', edit_user_registration_path, class: "text-dark mr-3 text-decoration-none" %>
+        </nav>
+        <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: "btn btn-outline-danger" %>
+      <% else %>
+        <%= link_to 'Sign in', new_user_session_path, class: "btn btn-success me-3" %>
+        <%= link_to 'Sign up', new_user_registration_path, class: "btn btn-secondary" %>
+      <% end %>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,8 @@
+<h1 class="mb-5">Groups</h1>
+
+<% @groups.each do |group| %>
+  <%= render group %>
+  <p><%= link_to "Show this group", group, class: "btn btn-sm btn-outline-dark mt-3" %></p>
+<% end %>
+
+<%= link_to "New group", new_group_path, class: "btn btn-sm btn-outline-dark mt-3" %>
