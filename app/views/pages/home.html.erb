@@ -1,3 +1,7 @@
-<p class="display-1 text-success">
+<p class="display-1 text-success mb-5 text-center">
   WELLCOME
 </p>
+
+<% if user_signed_in? %>
+  <%= render partial: 'groups/feed' %>
+<% end %>

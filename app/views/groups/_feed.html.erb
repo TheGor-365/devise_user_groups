@@ -1,0 +1,32 @@
+<% current_user.groups.each do |group| %>
+  <%= link_to group.name, group_path(group), class: 'shadow rounded p-4 my-4' %>
+
+  <h3 class="mt-5 mb-3 text-muted h6">
+    Members
+  </h3>
+
+  <ul class="list-group col-5 border border-success">
+    <% group.users.each do |user| %>
+      <li class="list-group-item">
+        <%= user.email %>
+      </li>
+    <% end %>
+  </ul>
+
+  <h3 class="mt-5 mb-3 text-muted h6">
+    Posts
+  </h3>
+
+  <% group.posts.each do |post| %>
+    <%= link_to post.title, group_post_path(group, post), class: 'shadow rounded p-4 my-4' %><br>
+
+    <p class="mt-5">
+      <strong class="text-muted">
+        Posted by
+      </strong><br><br>
+      <small class="border rounded border-success p-1">
+        <%= post.user.email %>
+      </small>
+    </p>
+  <% end %><hr class="my-5 border border-success border-2 opacity-50 col-5">
+<% end %>
